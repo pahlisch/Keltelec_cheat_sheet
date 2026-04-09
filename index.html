@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCentre Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --text: #1a1a2e;
+  --muted: #5c5c7a;
+  --border: #d8d8e8;
+  --section-bg: #f6f6fa;
+  --accent-blue: #2563eb;
+  --accent-teal: #0d9488;
+  --accent-teal-bg: #ecfdf8;
+  --accent-orange: #c2410c;
+  --accent-purple: #7c3aed;
+  --accent-red: #dc2626;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  padding: 32px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  border-bottom: 3px solid var(--accent-blue);
+  padding-bottom: 12px;
+}
+.header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+.header h1 em { color: var(--accent-blue); font-style: normal; }
+.header .sub { font-size: 13px; color: var(--muted); }
+.lang-switch {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lang-btn {
+  padding: 4px 12px;
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--muted);
+  border: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+.lang-btn.active { background: var(--accent-blue); color: white; }
+.lang-btn:not(.active):hover { background: var(--section-bg); }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.section { background: var(--section-bg); border-radius: 10px; padding: 18px 20px; }
+.section-title {
+  font-size: 15px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; margin-bottom: 14px; padding-bottom: 6px;
+}
+.section-title.blue { color: var(--accent-blue); border-bottom: 2px solid var(--accent-blue); }
+.section-title.teal { color: var(--accent-teal); border-bottom: 2px solid var(--accent-teal); }
+.section-title.orange { color: var(--accent-orange); border-bottom: 2px solid var(--accent-orange); }
+.section-title.purple { color: var(--accent-purple); border-bottom: 2px solid var(--accent-purple); }
+.section-title.red { color: var(--accent-red); border-bottom: 2px solid var(--accent-red); }
+.task {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0 14px; margin-bottom: 12px; align-items: baseline;
+}
+.task:last-child { margin-bottom: 0; }
+.task-label { font-weight: 600; font-size: 14px; }
+.task-how { font-size: 14px; }
+kbd {
+  display: inline-block; font-family: var(--mono); font-size: 13px; font-weight: 500;
+  background: var(--bg); border: 1.5px solid var(--border); border-radius: 5px;
+  padding: 1px 8px; line-height: 1.7; white-space: nowrap; box-shadow: 0 1px 0 var(--border);
+}
+.arrow { color: var(--muted); margin: 0 2px; font-size: 16px; }
+.note { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.mode-b {
+  display: inline-block; background: var(--accent-teal-bg); color: var(--accent-teal);
+  font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 4px;
+  margin-left: 4px; vertical-align: middle;
+}
+.choice-row { display: flex; gap: 12px; margin-top: 8px; }
+.choice-box {
+  flex: 1; background: var(--bg); border-radius: 6px;
+  padding: 10px 14px; border: 1.5px solid var(--border);
+}
+.choice-box strong { font-weight: 600; font-size: 14px; display: block; }
+.choice-box .desc { font-size: 13px; color: var(--muted); }
+.choice-box .subdesc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+[data-lang="fr"] { display: none; }
+body.fr [data-lang="fr"] { display: revert; }
+body.fr [data-lang="en"] { display: none; }
+@media print {
+  body { padding: 16px; font-size: 12px; }
+  .section { break-inside: avoid; }
+  .lang-switch { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1><em>KCentre</em> — <span data-lang="en">Quick Reference</span><span data-lang="fr">Aide-mémoire</span></h1>
+    <div class="sub" data-lang="en">Keltelec electronic practice chanter</div>
+    <div class="sub" data-lang="fr">Practice électronique Keltelec</div>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</div>
+
+<div class="columns">
+
+  <!-- PITCH -->
+  <div class="section">
+    <div class="section-title teal" data-lang="en">Pitch</div>
+    <div class="section-title teal" data-lang="fr">Hauteur (pitch)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch up</div>
+      <div class="task-label" data-lang="fr">Monter le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch down</div>
+      <div class="task-label" data-lang="fr">Baisser le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset pitch</div>
+      <div class="task-label" data-lang="fr">Réinitialiser le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>7</kbd></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Steps of ~1/8th tone. Reset returns to A=440 Hz.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Paliers d'environ 1/8ème de ton. La réinitialisation revient à La=440 Hz.</div>
+  </div>
+
+  <!-- VOLUME -->
+  <div class="section">
+    <div class="section-title orange">Volume</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Chanter vol up</div>
+      <div class="task-label" data-lang="fr">Volume chalumeau +</div>
+      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Chanter vol down</div>
+      <div class="task-label" data-lang="fr">Volume chalumeau −</div>
+      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Drone vol up</div>
+      <div class="task-label" data-lang="fr">Volume bourdon +</div>
+      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>3</kbd> <span class="mode-b">mode B</span></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Drone vol down</div>
+      <div class="task-label" data-lang="fr">Volume bourdon −</div>
+      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>4</kbd> <span class="mode-b">mode B</span></div>
+    </div>
+  </div>
+
+  <!-- TONALITY -->
+  <div class="section">
+    <div class="section-title blue" data-lang="en">Tonality</div>
+    <div class="section-title blue" data-lang="fr">Tonalité</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select tonality</div>
+      <div class="task-label" data-lang="fr">Choisir la tonalité</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>4</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Notes cycle: Bb low → C → D → F → G → A → Bb high → repeat. Release on the note you want.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Les notes défilent : Sib grave → Do → Ré → Fa → Sol → La → Sib aigu → boucle. Relâcher sur la note voulue.</div>
+    <div class="note" style="margin-top:6px;" data-lang="en">All settings (pitch, volume, scale, pressure) are saved per tonality.</div>
+    <div class="note" style="margin-top:6px;" data-lang="fr">Tous les réglages (pitch, volume, gamme, pression) sont sauvegardés par tonalité.</div>
+  </div>
+
+  <!-- SCALE -->
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Scale (temperament)</div>
+    <div class="section-title purple" data-lang="fr">Gamme (tempérament)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select scale</div>
+      <div class="task-label" data-lang="fr">Choisir la gamme</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>5</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Two notes alternate while you hold the contact:</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Deux notes alternent tant que vous maintenez le contact :</div>
+    <div class="choice-row">
+      <div class="choice-box">
+        <strong data-lang="en">Release on low note</strong>
+        <strong data-lang="fr">Relâcher sur note grave</strong>
+        <div class="desc" data-lang="en">→ Traditional temperament</div>
+        <div class="desc" data-lang="fr">→ Tempérament traditionnel</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on high note</strong>
+        <strong data-lang="fr">Relâcher sur note aiguë</strong>
+        <div class="desc" data-lang="en">→ Equal temperament (piano)</div>
+        <div class="desc" data-lang="fr">→ Tempérament égal (piano)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCTAVE -->
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Octave mode</div>
+    <div class="section-title purple" data-lang="fr">Mode d'octave</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select mode</div>
+      <div class="task-label" data-lang="fr">Choisir le mode</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>3</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Two notes alternate while you hold the contact:</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Deux notes alternent tant que vous maintenez le contact :</div>
+    <div class="choice-row">
+      <div class="choice-box">
+        <strong data-lang="en">Release on low note</strong>
+        <strong data-lang="fr">Relâcher sur note grave</strong>
+        <div class="desc" data-lang="en">→ OCT covered = octave up</div>
+        <div class="desc" data-lang="fr">→ OCT bouché = octave sup.</div>
+        <div class="subdesc" data-lang="en">(touch OCT hole to go up)</div>
+        <div class="subdesc" data-lang="fr">(toucher OCT pour monter)</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on high note</strong>
+        <strong data-lang="fr">Relâcher sur note aiguë</strong>
+        <div class="desc" data-lang="en">→ OCT uncovered = octave up</div>
+        <div class="desc" data-lang="fr">→ OCT débouché = octave sup.</div>
+        <div class="subdesc" data-lang="en">(slide thumb off OCT to go up)</div>
+        <div class="subdesc" data-lang="fr">(glisser le pouce hors d'OCT pour monter)</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">This setting is global (same for all tonalities). With bagpipe adapter, OCT is ignored — bag pressure controls octave instead.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Ce réglage est global (commun à toutes les tonalités). Avec l'adaptateur cornemuse, OCT est inopérant — c'est la pression de poche qui gère l'octave.</div>
+  </div>
+
+  <!-- FACTORY RESET -->
+  <div class="section">
+    <div class="section-title red" data-lang="en">Factory reset (SOS)</div>
+    <div class="section-title red" data-lang="fr">Réinitialisation usine (SOS)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset all settings</div>
+      <div class="task-label" data-lang="fr">Tout réinitialiser</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>1</kbd> + <kbd>7</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Touch 1 and 7 simultaneously. 10 short notes confirm reset. Must power-cycle before doing another SOS.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Toucher 1 et 7 simultanément. 10 notes brèves confirment. Il faut éteindre et rallumer avant un nouveau SOS.</div>
+  </div>
+
+</div>
+
+<div style="margin-top:20px;font-size:11px;color:var(--muted);text-align:right;">
+  Keltelec — keltelec.com — <span data-lang="en">Based on KCentre manual v4.7 (Nov 2022)</span><span data-lang="fr">D'après le mode d'emploi KCentre v4.7 (nov. 2022)</span>
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('fr', lang === 'fr');
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+}
+</script>
+
+</body>
+</html>
