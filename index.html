@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KCentre Cheat Sheet</title>
+<title>Keltelec — Aide-mémoire</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -31,17 +31,33 @@ body {
   max-width: 1100px;
   margin: 0 auto;
 }
-.header {
+.top-bar {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 28px;
-  border-bottom: 3px solid var(--accent-blue);
-  padding-bottom: 12px;
+  margin-bottom: 20px;
 }
-.header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
-.header h1 em { color: var(--accent-blue); font-style: normal; }
-.header .sub { font-size: 13px; color: var(--muted); }
+.instrument-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--section-bg);
+  border-radius: 8px;
+  padding: 4px;
+}
+.instrument-tab {
+  padding: 7px 16px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.instrument-tab.active { background: var(--accent-blue); color: white; }
+.instrument-tab:not(.active):hover { background: var(--border); color: var(--text); }
 .lang-switch {
   display: flex;
   border: 1.5px solid var(--border);
@@ -61,6 +77,17 @@ body {
 }
 .lang-btn.active { background: var(--accent-blue); color: white; }
 .lang-btn:not(.active):hover { background: var(--section-bg); }
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  border-bottom: 3px solid var(--accent-blue);
+  padding-bottom: 12px;
+}
+.header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+.header h1 em { color: var(--accent-blue); font-style: normal; }
+.header .sub { font-size: 13px; color: var(--muted); }
 .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .section { background: var(--section-bg); border-radius: 10px; padding: 18px 20px; }
 .section-title {
@@ -91,6 +118,11 @@ kbd {
   font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 4px;
   margin-left: 4px; vertical-align: middle;
 }
+.badge-adv {
+  display: inline-block; background: #f3e8ff; color: var(--accent-purple);
+  font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 4px;
+  margin-left: 4px; vertical-align: middle;
+}
 .choice-row { display: flex; gap: 12px; margin-top: 8px; }
 .choice-box {
   flex: 1; background: var(--bg); border-radius: 6px;
@@ -99,17 +131,43 @@ kbd {
 .choice-box strong { font-weight: 600; font-size: 14px; display: block; }
 .choice-box .desc { font-size: 13px; color: var(--muted); }
 .choice-box .subdesc { font-size: 12px; color: var(--muted); margin-top: 2px; }
-[data-lang="fr"] { display: none; }
-body.fr [data-lang="fr"] { display: revert; }
-body.fr [data-lang="en"] { display: none; }
+.choice-row-3 { display: flex; gap: 10px; margin-top: 8px; }
+.choice-row-3 .choice-box { flex: 1; padding: 8px 12px; }
+.choice-row-3 .choice-box strong { font-size: 13px; }
+.instrument-content { display: none; }
+.instrument-content.active { display: block; }
+[data-lang="en"] { display: none !important; }
+body.en [data-lang="en"] { display: revert !important; }
+body.en [data-lang="fr"] { display: none !important; }
+.footer {
+  margin-top: 20px; font-size: 11px; color: var(--muted); text-align: right;
+}
 @media print {
   body { padding: 16px; font-size: 12px; }
   .section { break-inside: avoid; }
-  .lang-switch { display: none; }
+  .top-bar { display: none; }
 }
 </style>
 </head>
 <body>
+
+<div class="top-bar">
+  <div class="instrument-tabs">
+    <button class="instrument-tab active" onclick="setInstrument('kcentre')">KCentre</button>
+    <button class="instrument-tab" onclick="setInstrument('kbomb2')">KBomb2</button>
+    <button class="instrument-tab" onclick="setInstrument('kpipes')">KPipes</button>
+    <button class="instrument-tab" onclick="setInstrument('kveuze')">KVeuze</button>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- KCentre                                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="instrument-content active" data-instrument="kcentre">
 
 <div class="header">
   <div>
@@ -117,15 +175,10 @@ body.fr [data-lang="en"] { display: none; }
     <div class="sub" data-lang="en">Keltelec electronic practice chanter</div>
     <div class="sub" data-lang="fr">Practice électronique Keltelec</div>
   </div>
-  <div class="lang-switch">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('fr')">FR</button>
-  </div>
 </div>
 
 <div class="columns">
 
-  <!-- PITCH -->
   <div class="section">
     <div class="section-title teal" data-lang="en">Pitch</div>
     <div class="section-title teal" data-lang="fr">Hauteur (pitch)</div>
@@ -148,32 +201,30 @@ body.fr [data-lang="en"] { display: none; }
     <div class="note" style="margin-top:8px;" data-lang="fr">Paliers d'environ 1/8ème de ton. La réinitialisation revient à La=440 Hz.</div>
   </div>
 
-  <!-- VOLUME -->
   <div class="section">
     <div class="section-title orange">Volume</div>
     <div class="task">
       <div class="task-label" data-lang="en">Chanter vol up</div>
       <div class="task-label" data-lang="fr">Volume chalumeau +</div>
-      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
     </div>
     <div class="task">
       <div class="task-label" data-lang="en">Chanter vol down</div>
       <div class="task-label" data-lang="fr">Volume chalumeau −</div>
-      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
     </div>
     <div class="task">
       <div class="task-label" data-lang="en">Drone vol up</div>
       <div class="task-label" data-lang="fr">Volume bourdon +</div>
-      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>3</kbd> <span class="mode-b">mode B</span></div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>3</kbd> <span class="mode-b">mode B</span></div>
     </div>
     <div class="task">
       <div class="task-label" data-lang="en">Drone vol down</div>
       <div class="task-label" data-lang="fr">Volume bourdon −</div>
-      <div class="task-how"><kbd>[8] ◺</kbd> <span class="arrow">→</span> touch <kbd>4</kbd> <span class="mode-b">mode B</span></div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>4</kbd> <span class="mode-b">mode B</span></div>
     </div>
   </div>
 
-  <!-- TONALITY -->
   <div class="section">
     <div class="section-title blue" data-lang="en">Tonality</div>
     <div class="section-title blue" data-lang="fr">Tonalité</div>
@@ -188,7 +239,6 @@ body.fr [data-lang="en"] { display: none; }
     <div class="note" style="margin-top:6px;" data-lang="fr">Tous les réglages (pitch, volume, gamme, pression) sont sauvegardés par tonalité.</div>
   </div>
 
-  <!-- SCALE -->
   <div class="section">
     <div class="section-title purple" data-lang="en">Scale (temperament)</div>
     <div class="section-title purple" data-lang="fr">Gamme (tempérament)</div>
@@ -215,7 +265,6 @@ body.fr [data-lang="en"] { display: none; }
     </div>
   </div>
 
-  <!-- OCTAVE -->
   <div class="section">
     <div class="section-title purple" data-lang="en">Octave mode</div>
     <div class="section-title purple" data-lang="fr">Mode d'octave</div>
@@ -248,7 +297,6 @@ body.fr [data-lang="en"] { display: none; }
     <div class="note" style="margin-top:8px;" data-lang="fr">Ce réglage est global (commun à toutes les tonalités). Avec l'adaptateur cornemuse, OCT est inopérant — c'est la pression de poche qui gère l'octave.</div>
   </div>
 
-  <!-- FACTORY RESET -->
   <div class="section">
     <div class="section-title red" data-lang="en">Factory reset (SOS)</div>
     <div class="section-title red" data-lang="fr">Réinitialisation usine (SOS)</div>
@@ -263,15 +311,500 @@ body.fr [data-lang="en"] { display: none; }
 
 </div>
 
-<div style="margin-top:20px;font-size:11px;color:var(--muted);text-align:right;">
+<div class="footer">
   Keltelec — keltelec.com — <span data-lang="en">Based on KCentre manual v4.7 (Nov 2022)</span><span data-lang="fr">D'après le mode d'emploi KCentre v4.7 (nov. 2022)</span>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- KBomb2                                      -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="instrument-content" data-instrument="kbomb2">
+
+<div class="header">
+  <div>
+    <h1><em>KBomb2</em> — <span data-lang="en">Quick Reference</span><span data-lang="fr">Aide-mémoire</span></h1>
+    <div class="sub" data-lang="en">Keltelec electronic bombarde practice</div>
+    <div class="sub" data-lang="fr">Practice électronique de bombarde Keltelec</div>
+  </div>
+</div>
+
+<div class="columns">
+
+  <div class="section">
+    <div class="section-title teal" data-lang="en">Pitch</div>
+    <div class="section-title teal" data-lang="fr">Hauteur (pitch)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch up</div>
+      <div class="task-label" data-lang="fr">Monter le pitch</div>
+      <div class="task-how"><kbd>[5] ♪</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch down</div>
+      <div class="task-label" data-lang="fr">Baisser le pitch</div>
+      <div class="task-how"><kbd>[5] ♪</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset pitch</div>
+      <div class="task-label" data-lang="fr">Réinitialiser le pitch</div>
+      <div class="task-how"><kbd>[5] ♪</kbd> <span class="arrow">→</span> touch <kbd>7</kbd></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Steps of ~1/8th tone. Reset returns to A=440 Hz. Breath also affects pitch like a real bombarde.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Paliers d'environ 1/8ème de ton. La réinitialisation revient à La=440 Hz. Le souffle influence aussi la hauteur comme sur une vraie bombarde.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title orange">Volume</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Volume up</div>
+      <div class="task-label" data-lang="fr">Volume +</div>
+      <div class="task-how"><kbd>[5] ◿</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Volume down</div>
+      <div class="task-label" data-lang="fr">Volume −</div>
+      <div class="task-how"><kbd>[5] ◿</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Using headphones with built-in volume control is recommended for quick adjustments.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Un casque avec réglage de volume intégré est recommandé pour les ajustements rapides.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title blue" data-lang="en">Tonality</div>
+    <div class="section-title blue" data-lang="fr">Tonalité</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select tonality</div>
+      <div class="task-label" data-lang="fr">Choisir la tonalité</div>
+      <div class="task-how"><kbd>[5] ♪</kbd> <span class="arrow">→</span> hold <kbd>4</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Notes cycle: G → A → Bb → C → repeat. Release on the note you want.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Les notes défilent : Sol → La → Sib → Do → boucle. Relâcher sur la note voulue.</div>
+    <div class="note" style="margin-top:6px;" data-lang="en">All settings are saved per tonality in EEPROM (persistent even without battery).</div>
+    <div class="note" style="margin-top:6px;" data-lang="fr">Tous les réglages sont sauvegardés par tonalité en EEPROM (persistants même sans pile).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Key signature (virtual taping)</div>
+    <div class="section-title purple" data-lang="fr">Armure (scotchage virtuel)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select accidentals</div>
+      <div class="task-label" data-lang="fr">Choisir les altérations</div>
+      <div class="task-how"><kbd>[5] ♪</kbd> <span class="arrow">→</span> hold <kbd>5</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Three notes cycle while you hold the contact:</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Trois notes défilent tant que vous maintenez le contact :</div>
+    <div class="choice-row-3">
+      <div class="choice-box">
+        <strong data-lang="en">Release on low</strong>
+        <strong data-lang="fr">Relâcher sur grave</strong>
+        <div class="desc" data-lang="en">→ No extra accidentals</div>
+        <div class="desc" data-lang="fr">→ Pas d'altération</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on mid</strong>
+        <strong data-lang="fr">Relâcher sur médium</strong>
+        <div class="desc" data-lang="en">→ +1 accidental (e.g. Db)</div>
+        <div class="desc" data-lang="fr">→ +1 altération (ex. Réb)</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on high</strong>
+        <strong data-lang="fr">Relâcher sur aigu</strong>
+        <div class="desc" data-lang="en">→ +2 accidentals (e.g. Db+Gb)</div>
+        <div class="desc" data-lang="fr">→ +2 altérations (ex. Réb+Solb)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Reed hardness</div>
+    <div class="section-title purple" data-lang="fr">Dureté de l'anche</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select hardness</div>
+      <div class="task-label" data-lang="fr">Choisir la dureté</div>
+      <div class="task-how"><kbd>[5] ◿</kbd> <span class="arrow">→</span> hold <kbd>5</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Cycles of 1, 2, 3, 4 then 5 short notes followed by silence. Release during silence — hardness = number of notes just played.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Séries de 1, 2, 3, 4 puis 5 notes brèves suivies d'un silence. Relâcher pendant le silence — dureté = nombre de notes qui viennent de jouer.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title red" data-lang="en">Factory reset (SOS)</div>
+    <div class="section-title red" data-lang="fr">Réinitialisation usine (SOS)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset all settings</div>
+      <div class="task-label" data-lang="fr">Tout réinitialiser</div>
+      <div class="task-how"><kbd>[5] ♪</kbd> <span class="arrow">→</span> touch <kbd>1</kbd> + <kbd>7</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Touch 1 and 7 simultaneously. 10 short notes confirm. Defaults: volume near max, A=440 Hz, Bb tonality, no accidentals, reed hardness 2. Must power-cycle before doing another SOS.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Toucher 1 et 7 simultanément. 10 notes brèves confirment. Défauts : volume proche du max, La=440 Hz, tonalité Sib, pas d'altération, dureté d'anche 2. Éteindre et rallumer avant un nouveau SOS.</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Keltelec — keltelec.com — <span data-lang="en">Based on KBomb2 manual v1.5 (Nov 2021)</span><span data-lang="fr">D'après le mode d'emploi KBomb2 v1.5 (nov. 2021)</span>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- KPipes                                      -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="instrument-content" data-instrument="kpipes">
+
+<div class="header">
+  <div>
+    <h1><em>KPipes</em> — <span data-lang="en">Quick Reference</span><span data-lang="fr">Aide-mémoire</span></h1>
+    <div class="sub" data-lang="en">Keltelec electronic bagpipe practice chanter</div>
+    <div class="sub" data-lang="fr">Practice chanter électronique de cornemuse Keltelec</div>
+  </div>
+</div>
+
+<div class="columns">
+
+  <div class="section">
+    <div class="section-title blue" data-lang="en">Sound modes & levels</div>
+    <div class="section-title blue" data-lang="fr">Modes de jeu & niveaux</div>
+    <div class="note" style="margin-bottom:10px;" data-lang="en">Switch [7] selects the sound mode:</div>
+    <div class="note" style="margin-bottom:10px;" data-lang="fr">Le commutateur [7] sélectionne le mode de jeu :</div>
+    <div class="choice-row-3">
+      <div class="choice-box">
+        <strong>P</strong>
+        <div class="desc" data-lang="en">Practice chanter sound</div>
+        <div class="desc" data-lang="fr">Son de practice chanter</div>
+      </div>
+      <div class="choice-box">
+        <strong>C</strong>
+        <div class="desc" data-lang="en">Bagpipe chanter sound</div>
+        <div class="desc" data-lang="fr">Son de chalumeau</div>
+      </div>
+      <div class="choice-box">
+        <strong>B</strong>
+        <div class="desc" data-lang="en">Chanter + drones</div>
+        <div class="desc" data-lang="fr">Chalumeau + bourdons</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:10px;" data-lang="en">Two levels: <strong>BASIC</strong> (default, beginner) and <strong>ADVANCED</strong> (extra features). Commands marked <span class="badge-adv">ADV</span> require ADVANCED level.</div>
+    <div class="note" style="margin-top:10px;" data-lang="fr">Deux niveaux : <strong>BASIQUE</strong> (défaut, débutant) et <strong>AVANCÉ</strong> (fonctions étendues). Les commandes marquées <span class="badge-adv">AVA</span> nécessitent le niveau AVANCÉ.</div>
+    <div class="task" style="margin-top:12px;">
+      <div class="task-label" data-lang="en">Toggle level</div>
+      <div class="task-label" data-lang="fr">Changer de niveau</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>2</kbd> + <kbd>8</kbd></div>
+    </div>
+    <div class="note" data-lang="en">20 short notes (2×10) = switched to ADVANCED. 10 short notes = back to BASIC.</div>
+    <div class="note" data-lang="fr">20 notes brèves (2×10) = passage en AVANCÉ. 10 notes brèves = retour en BASIQUE.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title teal" data-lang="en">Pitch</div>
+    <div class="section-title teal" data-lang="fr">Hauteur (pitch)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch up</div>
+      <div class="task-label" data-lang="fr">Monter le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch down</div>
+      <div class="task-label" data-lang="fr">Baisser le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>3</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset pitch</div>
+      <div class="task-label" data-lang="fr">Réinitialiser le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>8</kbd></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Separate pitch settings for Practice vs Chanter/Drones modes. Reset returns to A=440 Hz (Bb=466 Hz).</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Réglages de pitch séparés entre mode Practice et modes Chanter/Bourdons. Réinitialisation : La=440 Hz (Sib=466 Hz).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title orange">Volume</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">General vol up</div>
+      <div class="task-label" data-lang="fr">Volume général +</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">General vol down</div>
+      <div class="task-label" data-lang="fr">Volume général −</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>3</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Drone vol up</div>
+      <div class="task-label" data-lang="fr">Volume bourdons +</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>4</kbd> <span class="badge-adv">ADV</span> <span class="mode-b">mode B</span></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Drone vol down</div>
+      <div class="task-label" data-lang="fr">Volume bourdons −</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>5</kbd> <span class="badge-adv">ADV</span> <span class="mode-b">mode B</span></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Separate volume for Practice vs Chanter/Drones. Stored persistently.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Volume séparé entre Practice et Chanter/Bourdons. Sauvegardé de manière persistante.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Scale selection <span class="badge-adv">ADV</span></div>
+    <div class="section-title purple" data-lang="fr">Gamme <span class="badge-adv">AVA</span></div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select scale</div>
+      <div class="task-label" data-lang="fr">Choisir la gamme</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>5</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Notes cycle: G → A → Bb → C → repeat. Release on the note you want. Chanter &amp; Drones modes only (Practice always plays in Bb/A).</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Les notes défilent : Sol → La → Sib → Do → boucle. Relâcher sur la note voulue. Modes Chanter &amp; Bourdons uniquement (Practice joue toujours en Sib/La).</div>
+    <div class="note" style="margin-top:6px;" data-lang="en">Settings are independent per mode and per scale. All stored persistently.</div>
+    <div class="note" style="margin-top:6px;" data-lang="fr">Réglages indépendants par mode et par gamme. Tout est sauvegardé de manière persistante.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Key signature <span class="badge-adv">ADV</span></div>
+    <div class="section-title purple" data-lang="fr">Armure <span class="badge-adv">AVA</span></div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select accidentals</div>
+      <div class="task-label" data-lang="fr">Choisir les altérations</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>4</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Three notes cycle: Bb/A, Db/Cnat, Gb/Fnat:</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Trois notes défilent : Sib/La, Réb/Do♮, Solb/Fa♮ :</div>
+    <div class="choice-row-3">
+      <div class="choice-box">
+        <strong data-lang="en">Release on Bb/A</strong>
+        <strong data-lang="fr">Relâcher sur Sib/La</strong>
+        <div class="desc" data-lang="en">→ D &amp; G natural</div>
+        <div class="desc" data-lang="fr">→ Ré &amp; Sol naturels</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on Db</strong>
+        <strong data-lang="fr">Relâcher sur Réb</strong>
+        <div class="desc" data-lang="en">→ Db + G natural</div>
+        <div class="desc" data-lang="fr">→ Réb + Sol naturel</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on Gb</strong>
+        <strong data-lang="fr">Relâcher sur Solb</strong>
+        <div class="desc" data-lang="en">→ Db + Gb</div>
+        <div class="desc" data-lang="fr">→ Réb + Solb</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Drones in second <span class="badge-adv">ADV</span></div>
+    <div class="section-title purple" data-lang="fr">Bourdons en seconde <span class="badge-adv">AVA</span></div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select drone key</div>
+      <div class="task-label" data-lang="fr">Choisir ton du bourdon</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>6</kbd> <span class="mode-b">mode B</span></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Two notes alternate (e.g. Bb/A and C/B for a Bb scale):</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Deux notes alternent (ex. Sib/La et Do/Si pour une gamme en Sib) :</div>
+    <div class="choice-row">
+      <div class="choice-box">
+        <strong data-lang="en">Release on tonic</strong>
+        <strong data-lang="fr">Relâcher sur tonique</strong>
+        <div class="desc" data-lang="en">→ Drones on tonic (standard)</div>
+        <div class="desc" data-lang="fr">→ Bourdons sur tonique (standard)</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on second</strong>
+        <strong data-lang="fr">Relâcher sur seconde</strong>
+        <div class="desc" data-lang="en">→ Drones on second + LowG→LowF</div>
+        <div class="desc" data-lang="fr">→ Bourdons en seconde + LabG→SolG</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title red" data-lang="en">Factory reset (SOS)</div>
+    <div class="section-title red" data-lang="fr">Réinitialisation usine (SOS)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset all settings</div>
+      <div class="task-label" data-lang="fr">Tout réinitialiser</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>7</kbd> + <kbd>8</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Touch 7 and 8 simultaneously. 10 short notes confirm. Defaults: BASIC level, volume near max, pitch zero, A=446 Hz, Bb/A scale, drones on tonic, natural D &amp; G, lowest note LowG. Must power-cycle before another SOS.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Toucher 7 et 8 simultanément. 10 notes brèves confirment. Défauts : niveau BASIQUE, volume proche du max, pitch à zéro, La=446 Hz, gamme Sib/La, bourdons sur tonique, Ré &amp; Sol naturels, note grave LabG. Éteindre et rallumer avant un nouveau SOS.</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Keltelec — keltelec.com — <span data-lang="en">Based on KPipes manual v3.2 (Jun 2018)</span><span data-lang="fr">D'après le mode d'emploi KPipes v3.2 (juin 2018)</span>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- KVeuze                                      -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="instrument-content" data-instrument="kveuze">
+
+<div class="header">
+  <div>
+    <h1><em>KVeuze</em> — <span data-lang="en">Quick Reference</span><span data-lang="fr">Aide-mémoire</span></h1>
+    <div class="sub" data-lang="en">Keltelec electronic veuze practice</div>
+    <div class="sub" data-lang="fr">Practice électronique de veuze Keltelec</div>
+  </div>
+</div>
+
+<div class="columns">
+
+  <div class="section">
+    <div class="section-title blue" data-lang="en">Drone modes</div>
+    <div class="section-title blue" data-lang="fr">Modes de bourdon</div>
+    <div class="note" style="margin-bottom:10px;" data-lang="en">Switch [7] selects the drone:</div>
+    <div class="note" style="margin-bottom:10px;" data-lang="fr">Le commutateur [7] sélectionne le bourdon :</div>
+    <div class="choice-row-3">
+      <div class="choice-box">
+        <strong>P</strong>
+        <div class="desc" data-lang="en">No drone</div>
+        <div class="desc" data-lang="fr">Pas de bourdon</div>
+      </div>
+      <div class="choice-box">
+        <strong>G</strong>
+        <div class="desc" data-lang="en">Bass drone (grave)</div>
+        <div class="desc" data-lang="fr">Bourdon grave</div>
+      </div>
+      <div class="choice-box">
+        <strong>T</strong>
+        <div class="desc" data-lang="en">Tenor drone</div>
+        <div class="desc" data-lang="fr">Bourdon ténor</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">20 possible configurations: 4 tonalities × (no drone, bass tonic, bass second, tenor tonic, tenor second).</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">20 configurations possibles : 4 tonalités × (sans bourdon, grave tonique, grave seconde, ténor tonique, ténor seconde).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title teal" data-lang="en">Pitch</div>
+    <div class="section-title teal" data-lang="fr">Hauteur (pitch)</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch up</div>
+      <div class="task-label" data-lang="fr">Monter le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Pitch down</div>
+      <div class="task-label" data-lang="fr">Baisser le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Reset pitch</div>
+      <div class="task-label" data-lang="fr">Réinitialiser le pitch</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> touch <kbd>7</kbd></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Steps of ~1/8th tone. Reset returns to A=440 Hz.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Paliers d'environ 1/8ème de ton. La réinitialisation revient à La=440 Hz.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title orange">Volume</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">General vol up</div>
+      <div class="task-label" data-lang="fr">Volume général +</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>1</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">General vol down</div>
+      <div class="task-label" data-lang="fr">Volume général −</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>2</kbd></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Drone vol up</div>
+      <div class="task-label" data-lang="fr">Volume bourdon +</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>3</kbd> <span class="mode-b">G / T</span></div>
+    </div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Drone vol down</div>
+      <div class="task-label" data-lang="fr">Volume bourdon −</div>
+      <div class="task-how"><kbd>[8] ◿</kbd> <span class="arrow">→</span> touch <kbd>4</kbd> <span class="mode-b">G / T</span></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">Drone volume settings are independent per tonality and per drone type (tenor/bass). All settings stored persistently.</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Le volume du bourdon est indépendant par tonalité et par type de bourdon (ténor/grave). Tous les réglages sont sauvegardés.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title blue" data-lang="en">Tonality</div>
+    <div class="section-title blue" data-lang="fr">Tonalité</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select tonality</div>
+      <div class="task-label" data-lang="fr">Choisir la tonalité</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>4</kbd></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Notes cycle: G → A → Bb → C → repeat. Release on the note you want.</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Les notes défilent : Sol → La → Sib → Do → boucle. Relâcher sur la note voulue.</div>
+    <div class="note" style="margin-top:6px;" data-lang="en">All settings are saved per tonality in EEPROM (persistent even without battery).</div>
+    <div class="note" style="margin-top:6px;" data-lang="fr">Tous les réglages sont sauvegardés par tonalité en EEPROM (persistants même sans pile).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Drone tuning</div>
+    <div class="section-title purple" data-lang="fr">Accord du bourdon</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Select drone key</div>
+      <div class="task-label" data-lang="fr">Choisir le ton du bourdon</div>
+      <div class="task-how"><kbd>[8] ♪</kbd> <span class="arrow">→</span> hold <kbd>5</kbd> <span class="mode-b">G / T</span></div>
+    </div>
+    <div class="note" style="margin-top:4px;" data-lang="en">Two notes alternate — tonic and second:</div>
+    <div class="note" style="margin-top:4px;" data-lang="fr">Deux notes alternent — tonique et seconde :</div>
+    <div class="choice-row">
+      <div class="choice-box">
+        <strong data-lang="en">Release on tonic</strong>
+        <strong data-lang="fr">Relâcher sur tonique</strong>
+        <div class="desc" data-lang="en">→ Drone tuned to tonic</div>
+        <div class="desc" data-lang="fr">→ Bourdon accordé sur la tonique</div>
+        <div class="subdesc" data-lang="en">(e.g. C drone for C tonality)</div>
+        <div class="subdesc" data-lang="fr">(ex. bourdon en Do pour tonalité Do)</div>
+      </div>
+      <div class="choice-box">
+        <strong data-lang="en">Release on second</strong>
+        <strong data-lang="fr">Relâcher sur seconde</strong>
+        <div class="desc" data-lang="en">→ Drone tuned one tone up</div>
+        <div class="desc" data-lang="fr">→ Bourdon un ton au-dessus</div>
+        <div class="subdesc" data-lang="en">(e.g. D drone for C tonality)</div>
+        <div class="subdesc" data-lang="fr">(ex. bourdon en Ré pour tonalité Do)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title purple" data-lang="en">Octave</div>
+    <div class="section-title purple" data-lang="fr">Octave</div>
+    <div class="task">
+      <div class="task-label" data-lang="en">Play upper octave</div>
+      <div class="task-label" data-lang="fr">Jouer à l'octave sup.</div>
+      <div class="task-how" data-lang="en">Slide thumb from <kbd>①</kbd> to <kbd>OCT</kbd></div>
+      <div class="task-how" data-lang="fr">Glisser le pouce de <kbd>①</kbd> vers <kbd>OCT</kbd></div>
+    </div>
+    <div class="note" style="margin-top:8px;" data-lang="en">The OCT contact is just above the thumb hole ①. Sliding to OCT replaces bag pressure increase (which has no meaning here). Adds 2 extra notes above normal range (e.g. D and E above C tonality).</div>
+    <div class="note" style="margin-top:8px;" data-lang="fr">Le contact OCT est juste au-dessus du trou de pouce ①. Le glissement vers OCT remplace l'augmentation de pression de poche (sans objet ici). Ajoute 2 notes au-dessus de la tessiture normale (ex. Ré et Mi aigus en tonalité Do).</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Keltelec — keltelec.com — <span data-lang="en">Based on KVeuze manual v1.1 (May 2014)</span><span data-lang="fr">D'après le mode d'emploi KVeuze v1.1 (mai 2014)</span>
+</div>
+
 </div>
 
 <script>
 function setLang(lang) {
-  document.body.classList.toggle('fr', lang === 'fr');
+  document.body.classList.toggle('en', lang === 'en');
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
     btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+  document.title = 'Keltelec — ' + (lang === 'en' ? 'Quick Reference' : 'Aide-mémoire');
+}
+
+function setInstrument(id) {
+  document.querySelectorAll('.instrument-content').forEach(function(el) {
+    el.classList.toggle('active', el.getAttribute('data-instrument') === id);
+  });
+  document.querySelectorAll('.instrument-tab').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().replace(/\s/g, '') === id);
   });
 }
 </script>
